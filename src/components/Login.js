@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../redux/actions/authAction";
 import ModalDialog from "./ModalDialog";
@@ -15,6 +16,14 @@ const Login = () => {
     title: "",
     message: "",
   });
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (modalShow === false && modalContent.title === "Success") {
+      navigate("/");
+    }
+  }, [modalShow, modalContent, navigate]);
 
   const handleModalClose = () => {
     setModalShow(false);
