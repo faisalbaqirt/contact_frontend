@@ -50,6 +50,13 @@
   text-align: right;
 }
 
+/* navbar */
+.navbar-nav li a {
+  padding: 5px 0;
+  letter-spacing: 0.5px;
+  margin: 0 10px;
+}
+
 /* login dan register */
 .auth-container {
   max-width: 400px;
