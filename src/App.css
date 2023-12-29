@@ -57,6 +57,11 @@
   margin: 0 10px;
 }
 
+/* footer*/
+.footer-section {
+  padding: 20px 0 10px 0;
+}
+
 /* login dan register */
 .auth-container {
   max-width: 400px;
