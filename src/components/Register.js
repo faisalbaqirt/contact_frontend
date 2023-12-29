@@ -4,6 +4,7 @@ import { registerUser } from "../redux/actions/authAction";
 
 const Register = () => {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -16,10 +17,13 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setIsLoading(true);
       const response = await dispatch(registerUser(formData));
       if (response.payload.message === "This username is already registered") {
+        setIsLoading(false)
         alert(response.payload.message);
       } else {
+        setIsLoading(false)
         alert("Successfully created an account");
       }
     } catch (error) {
@@ -31,6 +35,11 @@ const Register = () => {
     <>
       <div className="container auth-container">
         <h2 className="text-center mb-3">Create an account</h2>
+        {isLoading && (
+          <div className="loader-container">
+            <div className="spinner-border text-light" role="status"></div>
+          </div>
+        )}
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="mb-3">
             <label htmlFor="username" className="form-label">

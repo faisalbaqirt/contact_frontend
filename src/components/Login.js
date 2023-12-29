@@ -4,6 +4,7 @@ import { loginUser } from "../redux/actions/authAction";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -16,12 +17,15 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setIsLoading(true);
       const response = await dispatch(loginUser(formData));
 
       if (response && response.payload && response.payload.token) {
+        setIsLoading(false)
         alert(`${formData.username} logged in successfully`);
         localStorage.setItem("token", response.payload.token);
       } else {
+        setIsLoading(false)
         alert("Login failed");
       }
     } catch (error) {
@@ -33,6 +37,11 @@ const Login = () => {
     <>
       <div className="container auth-container">
         <h2 className="text-center mb-3">Login</h2>
+        {isLoading && (
+            <div className="loader-container">
+              <div className="spinner-border text-light" role="status"></div>
+            </div>
+          )}
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="mb-3">
             <label htmlFor="username" className="form-label">
