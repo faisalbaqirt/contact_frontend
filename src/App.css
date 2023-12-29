@@ -57,6 +57,25 @@
   margin: 0 10px;
 }
 
+/* intro */
+.intro-container {
+  padding: 160px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.intro-title {
+  font-size: 60px;
+  font-weight: bolder;
+}
+
+.intro-text {
+  font-size: 24px;
+}
+
 /* footer*/
 .footer-section {
   padding: 20px 0 10px 0;
