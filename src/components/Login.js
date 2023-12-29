@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../redux/actions/authAction";
+import ModalDialog from "./ModalDialog";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -9,6 +10,15 @@ const Login = () => {
     username: "",
     password: "",
   });
+  const [modalShow, setModalShow] = useState(false);
+  const [modalContent, setModalContent] = useState({
+    title: "",
+    message: "",
+  });
+
+  const handleModalClose = () => {
+    setModalShow(false);
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,11 +32,19 @@ const Login = () => {
 
       if (response && response.payload && response.payload.token) {
         setIsLoading(false)
-        alert(`${formData.username} logged in successfully`);
+        setModalContent({
+            title: "Success",
+            message: `${formData.username} logged in successfully`,
+          });
+        setModalShow(true);
         localStorage.setItem("token", response.payload.token);
       } else {
         setIsLoading(false)
-        alert("Login failed");
+        setModalContent({
+            title: "Error",
+            message: response.payload.message,
+          });
+        setModalShow(true);
       }
     } catch (error) {
       throw error;
@@ -79,6 +97,12 @@ const Login = () => {
           New user? <a href="/register">Create an account</a>
         </div>
       </div>
+      <ModalDialog
+        show={modalShow}
+        onHide={handleModalClose}
+        title={modalContent.title}
+        message={modalContent.message}
+      />
     </>
   );
 };
