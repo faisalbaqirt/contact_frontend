@@ -1,3 +1,5 @@
+import axios from "axios";
+
 // Action Types
 export const GET_ALLCONTACTS = "GET_ALLCONTACTS";
 export const GET_CONTACT = "GET_CONTACT";
@@ -28,3 +30,82 @@ export const deleteContact = (contactId) => ({
   type: DELETE_CONTACT,
   payload: contactId,
 });
+
+// Thunks
+export const getAllContactsByUser = () => async (dispatch) => {
+  try {
+    const response = await axios.get("http://localhost:5000/api/v1/contact", {
+      headers: {
+        Authorization: `${localStorage.getItem("token")}`,
+      },
+    });
+    dispatch(getAllContacts(response.data.data));
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getContactById = (id) => async (dispatch) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:5000/api/v1/contact/person/${id}`,
+      {
+        headers: {
+          Authorization: `${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    dispatch(getContact(response.data.data));
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const createNewContact =
+  (name, telephone, email, address, labels) => async (dispatch) => {
+    try {
+      await axios.post(
+        "http://localhost:5000/api/v1/contact/new",
+        { name, telephone, email, address, labels },
+        {
+          headers: {
+            Authorization: `${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      dispatch(createContact());
+    } catch (error) {
+      throw error;
+    }
+  };
+
+export const updateContactById =
+  (id, name, telephone, email, address, labels) => async (dispatch) => {
+    try {
+      await axios.put(
+        `http://localhost:5000/api/v1/contact/person/${id}`,
+        { name, telephone, email, address, labels },
+        {
+          headers: {
+            Authorization: `${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      dispatch(updateContact());
+    } catch (error) {
+      throw error;
+    }
+  };
+
+export const deleteContactById = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`http://localhost:5000/api/v1/contact/person/${id}`, {
+      headers: {
+        Authorization: `${localStorage.getItem("token")}`,
+      },
+    });
+    dispatch(deleteContact(id));
+  } catch (error) {
+    throw error;
+  }
+};
