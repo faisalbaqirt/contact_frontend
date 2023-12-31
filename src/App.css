@@ -103,7 +103,8 @@
 }
 
 /* contactlist */
-.contact-list {
+.contact-list,
+.contact-detail {
   margin: 20px;
   padding: 10px;
 }
@@ -119,4 +120,16 @@
 
 .contact-item:hover {
   background-color: #e0e0e0;
+}
+
+/* contact detail */
+.detail-name {
+  text-transform: capitalize;
+  font-size: 24px;
+}
+
+.detail-col {
+  background-color: #e0e0e0;
+  padding: 20px;
+  border-radius: 10px;
 }
