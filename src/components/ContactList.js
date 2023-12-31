@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getAllContactsByUser } from "../redux/actions/contactAction";
 
 function ContactList() {
@@ -22,12 +23,14 @@ function ContactList() {
             <div className="header-item col">Address</div>
           </div>
           {contacts.map((contact) => (
-            <div key={contact.id} className="contact-item row">
-              <div className="item col">{contact.name}</div>
-              <div className="item col">{contact.email}</div>
-              <div className="item col">{contact.telephone}</div>
-              <div className="item col">{contact.address}</div>
-            </div>
+            <Link to={`/person/${contact.id}`} className="contact-link">
+              <div key={contact.id} className="contact-item row">
+                <div className="item col">{contact.name}</div>
+                <div className="item col">{contact.email}</div>
+                <div className="item col">{contact.telephone}</div>
+                <div className="item col">{contact.address}</div>
+              </div>
+            </Link>
           ))}
         </div>
       </div>
