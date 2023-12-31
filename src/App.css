@@ -113,9 +113,19 @@
   border-bottom: 1px solid var(--bs-secondary-bg);
 }
 
+.contact-link {
+  text-decoration: none;
+  cursor: pointer;
+  width: 100%;
+}
+
 .header-item,
 .item {
   padding: 10px;
+}
+
+.item {
+  color: black;
 }
 
 .contact-item:hover {
