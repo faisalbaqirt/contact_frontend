@@ -4,6 +4,7 @@ import store from "./redux/store";
 import Home from "./pages/Home";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import ContactDetail from "./components/ContactDetail";
 import "./App.css";
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
             path="/register"
             element={isAuthenticated ? <Navigate to="/" /> : <Register />}
           />
+          <Route path="/person/:contact_id" element={<ContactDetail />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </BrowserRouter>
