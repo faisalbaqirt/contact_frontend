@@ -24,6 +24,15 @@ function ContactDetail() {
               </Link>
             </div>
             <div className="detail-name mt-3">{contact.name}</div>
+            {contact.labels && contact.labels.length > 0 && (
+              <div className="labels">
+                {contact.labels.map((label, index) => (
+                  <div key={index} className="label-item">
+                    {label}
+                  </div>
+                ))}
+              </div>
+            )}
             <div className="detail-col col-md-4 mt-3">
               <div className="item">
                 {" "}
