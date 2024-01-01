@@ -114,3 +114,21 @@ export const deleteContactById = (id) => async (dispatch) => {
     throw error;
   }
 };
+
+export const addLabelToContact = (contactId, label) => async (dispatch) => {
+  try {
+    await axios.post(
+      `http://localhost:5000/api/v1/contact/person/${contactId}/label`,
+      { label },
+      {
+        headers: {
+          Authorization: `${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    dispatch(addLabel());
+    dispatch(getContactById(contactId));
+  } catch (error) {
+    throw error;
+  }
+};
