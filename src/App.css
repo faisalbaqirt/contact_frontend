@@ -143,3 +143,16 @@
   padding: 20px;
   border-radius: 10px;
 }
+
+.labels {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+}
+
+.label-item {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
