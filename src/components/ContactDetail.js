@@ -1,8 +1,11 @@
 import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getContactById } from "../redux/actions/contactAction";
-import { FaEnvelope, FaPhone, FaLocationDot } from "react-icons/fa6";
+import {
+  getContactById,
+  removeLabelFromContact,
+} from "../redux/actions/contactAction";
+import { FaEnvelope, FaPhone, FaLocationDot, FaTrash } from "react-icons/fa6";
 
 function ContactDetail() {
   const { contact_id } = useParams();
@@ -12,6 +15,10 @@ function ContactDetail() {
   useEffect(() => {
     dispatch(getContactById(contact_id));
   }, [dispatch, contact_id]);
+
+  const handleRemoveLabel = (label) => {
+    dispatch(removeLabelFromContact(contact_id, label));
+  };
 
   return (
     <>
@@ -29,6 +36,17 @@ function ContactDetail() {
                 {contact.labels.map((label, index) => (
                   <div key={index} className="label-item">
                     {label}
+                    <button
+                      className="btn delete-label"
+                      onClick={() => handleRemoveLabel(label)}
+                      style={{
+                        position: "absolute",
+                        right: "0px",
+                        zIndex: 1,
+                      }}
+                    >
+                      <FaTrash />
+                    </button>
                   </div>
                 ))}
               </div>
