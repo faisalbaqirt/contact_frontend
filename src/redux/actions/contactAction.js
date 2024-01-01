@@ -32,6 +32,10 @@ export const deleteContact = (contactId) => ({
   payload: contactId,
 });
 
+export const addLabel = () => ({
+  type: ADD_LABEL,
+});
+
 // Thunks
 export const getAllContactsByUser = () => async (dispatch) => {
   try {
