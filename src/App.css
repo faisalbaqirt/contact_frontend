@@ -155,4 +155,16 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.delete-label {
+  display: none;
+}
+
+.label-item:hover .delete-label{
+  display: block;
 }
