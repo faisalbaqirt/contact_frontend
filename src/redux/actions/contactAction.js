@@ -6,6 +6,7 @@ export const GET_CONTACT = "GET_CONTACT";
 export const CREATE_CONTACT = "CREATE_CONTACT";
 export const UPDATE_CONTACT = "CONTACT";
 export const DELETE_CONTACT = "DELETE_CONTACT";
+export const ADD_LABEL = "ADD_LABEL";
 
 // Action Creators
 export const getAllContacts = (contact) => ({
