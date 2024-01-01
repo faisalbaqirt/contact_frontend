@@ -37,6 +37,10 @@ export const addLabel = () => ({
   type: ADD_LABEL,
 });
 
+export const removeLabel = () => ({
+  type: REMOVE_LABEL,
+});
+
 // Thunks
 export const getAllContactsByUser = () => async (dispatch) => {
   try {
