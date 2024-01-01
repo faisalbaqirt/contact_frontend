@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getContactById,
+  addLabelToContact,
   removeLabelFromContact,
 } from "../redux/actions/contactAction";
 import { FaEnvelope, FaPhone, FaLocationDot, FaTrash } from "react-icons/fa6";
@@ -15,6 +16,15 @@ function ContactDetail() {
   useEffect(() => {
     dispatch(getContactById(contact_id));
   }, [dispatch, contact_id]);
+
+  const [newLabel, setNewLabel] = useState("");
+  const [isAddingLabel, setIsAddingLabel] = useState(false);
+
+  const handleAddLabel = () => {
+    dispatch(addLabelToContact(contact_id, newLabel));
+    setNewLabel("");
+    setIsAddingLabel(false);
+  };
 
   const handleRemoveLabel = (label) => {
     dispatch(removeLabelFromContact(contact_id, label));
@@ -49,6 +59,25 @@ function ContactDetail() {
                     </button>
                   </div>
                 ))}
+                {isAddingLabel ? (
+                  <div className="label-item">
+                    <input
+                      type="text"
+                      value={newLabel}
+                      onChange={(e) => setNewLabel(e.target.value)}
+                      placeholder="Tambah Label"
+                    />
+                    <button className="btn" onClick={handleAddLabel}>
+                      Add
+                    </button>
+                  </div>
+                ) : (
+                  <div className="label-item">
+                    <div className="btn" onClick={() => setIsAddingLabel(true)}>
+                      Add Label
+                    </div>
+                  </div>
+                )}
               </div>
             )}
             <div className="detail-col col-md-4 mt-3">
