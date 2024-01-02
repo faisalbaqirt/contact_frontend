@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getContactById,
+  deleteContactById,
   addLabelToContact,
   removeLabelFromContact,
 } from "../redux/actions/contactAction";
@@ -32,6 +33,12 @@ function ContactDetail() {
     setIsEditContactModal(true);
   };
 
+  const navigate = useNavigate();
+  const handleRemoveContact = () => {
+    dispatch(deleteContactById(contact_id));
+    navigate("/");
+  };
+
   const handleAddLabel = () => {
     dispatch(addLabelToContact(contact_id, newLabel));
     setNewLabel("");
@@ -59,6 +66,9 @@ function ContactDetail() {
                 <button className="btn btn-primary" onClick={handleEditContact}>
                   Edit
                 </button>
+                <div className="btn-action ms-3" onClick={handleRemoveContact}>
+                  <FaTrash />
+                </div>
               </div>
             </div>
             <div className="detail-name mt-3">{contact.name}</div>
