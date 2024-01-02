@@ -134,7 +134,7 @@
 .contact-link {
   text-decoration: none;
   cursor: pointer;
-  width: 100%;
+  color: black;
 }
 
 .header-item,
@@ -185,4 +185,15 @@
 
 .label-item:hover .delete-label {
   display: block;
+}
+
+.contact-detail-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.right-action {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
