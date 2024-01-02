@@ -6,7 +6,14 @@ import {
   addLabelToContact,
   removeLabelFromContact,
 } from "../redux/actions/contactAction";
-import { FaEnvelope, FaPhone, FaLocationDot, FaTrash } from "react-icons/fa6";
+import {
+  FaEnvelope,
+  FaPhone,
+  FaLocationDot,
+  FaTrash,
+  FaArrowLeft,
+} from "react-icons/fa6";
+import ContactForm from "./ContactForm";
 
 function ContactDetail() {
   const { contact_id } = useParams();
@@ -19,6 +26,11 @@ function ContactDetail() {
 
   const [newLabel, setNewLabel] = useState("");
   const [isAddingLabel, setIsAddingLabel] = useState(false);
+  const [isEditContactModal, setIsEditContactModal] = useState(false);
+
+  const handleEditContact = () => {
+    setIsEditContactModal(true);
+  };
 
   const handleAddLabel = () => {
     dispatch(addLabelToContact(contact_id, newLabel));
@@ -36,9 +48,18 @@ function ContactDetail() {
         {contacts.map((contact) => (
           <div key={contact.id} className="details">
             <div className="contact-detail-actions">
-              <Link to="/" className="contact-link">
-                Back
-              </Link>
+              <div className="left-action">
+                <div className="btn-action">
+                  <Link to="/" className="contact-link">
+                    <FaArrowLeft />
+                  </Link>
+                </div>
+              </div>
+              <div className="right-action">
+                <button className="btn btn-primary" onClick={handleEditContact}>
+                  Edit
+                </button>
+              </div>
             </div>
             <div className="detail-name mt-3">{contact.name}</div>
             {contact.labels && contact.labels.length > 0 && (
@@ -97,6 +118,11 @@ function ContactDetail() {
           </div>
         ))}
       </div>
+      <ContactForm
+        isOpen={isEditContactModal}
+        onClose={() => setIsEditContactModal(false)}
+        contactId={contact_id}
+      />
     </>
   );
 }
