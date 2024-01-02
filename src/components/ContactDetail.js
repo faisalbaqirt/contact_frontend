@@ -4,14 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getContactById,
   deleteContactById,
+  addLabelToContact,
   removeLabelFromContact,
 } from "../redux/actions/contactAction";
+import { getAllLabelsByUser } from "../redux/actions/labelAction";
 import {
   FaEnvelope,
   FaPhone,
   FaLocationDot,
   FaTrash,
   FaArrowLeft,
+  FaCheck,
+  FaPlus,
+  FaTag,
 } from "react-icons/fa6";
 import ContactForm from "./ContactForm";
 import LabelForm from "./LabelForm";
@@ -20,13 +25,15 @@ function ContactDetail() {
   const { contact_id } = useParams();
   const dispatch = useDispatch();
   const contacts = useSelector((state) => state.contact.contactlist);
+  const labels = useSelector((state) => state.label.labellist);
+  const [isAddingLabel, setIsAddingLabel] = useState(false);
+  const [isEditContactModal, setIsEditContactModal] = useState(false);
+  const [selectedLabel, setSelectedLabel] = useState("");
 
   useEffect(() => {
     dispatch(getContactById(contact_id));
+    dispatch(getAllLabelsByUser());
   }, [dispatch, contact_id]);
-
-  const [isAddingLabel, setIsAddingLabel] = useState(false);
-  const [isEditContactModal, setIsEditContactModal] = useState(false);
 
   const handleEditContact = () => {
     setIsEditContactModal(true);
@@ -36,6 +43,14 @@ function ContactDetail() {
   const handleRemoveContact = () => {
     dispatch(deleteContactById(contact_id));
     navigate("/");
+  };
+
+  const handleSelectLabel = (label) => {
+    setSelectedLabel((prevLabel) => (prevLabel === label ? "" : label));
+  };
+
+  const handleAddLabelToContact = () => {
+    dispatch(addLabelToContact(contact_id, selectedLabel));
   };
 
   const handleRemoveLabel = (label) => {
@@ -84,8 +99,68 @@ function ContactDetail() {
                   </div>
                 ))}
                 <div className="label-item">
-                  <div className="btn" onClick={() => setIsAddingLabel(true)}>
-                    Add Label
+                  <div className="dropdown">
+                    <button
+                      className="btn dropdown-toggle"
+                      type="button"
+                      id="labelDropdown"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <FaPlus /> Label
+                    </button>
+                    <ul className="dropdown-menu">
+                      {labels.length > 0 ? (
+                        labels.map((label) => (
+                          <li key={label.id}>
+                            <div
+                              className={`dropdown-item ${
+                                label.name === selectedLabel ? "active" : ""
+                              }`}
+                              onClick={() => handleSelectLabel(label.name)}
+                            >
+                              <FaTag />{" "}
+                              <span className="ms-3">{label.name} </span>
+                              {label.name === selectedLabel && (
+                                <span className="float-end">
+                                  <FaCheck />
+                                </span>
+                              )}
+                            </div>
+                          </li>
+                        ))
+                      ) : (
+                        <li>
+                          <div className="dropdown-item disabled">
+                            No Labels
+                          </div>
+                        </li>
+                      )}
+                      <li>
+                        <hr className="dropdown-divider" />
+                      </li>
+                      <li>
+                        {selectedLabel ? (
+                          <button
+                            className="dropdown-item"
+                            onClick={() => {
+                              handleAddLabelToContact();
+                            }}
+                          >
+                            Add Label
+                          </button>
+                        ) : (
+                          <button
+                            className="dropdown-item"
+                            onClick={() => {
+                              setIsAddingLabel(true);
+                            }}
+                          >
+                            <FaPlus /> <span className="ms-3"> New Label </span>
+                          </button>
+                        )}
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
