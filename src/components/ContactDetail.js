@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getContactById,
   deleteContactById,
-  addLabelToContact,
   removeLabelFromContact,
 } from "../redux/actions/contactAction";
 import {
@@ -15,6 +14,7 @@ import {
   FaArrowLeft,
 } from "react-icons/fa6";
 import ContactForm from "./ContactForm";
+import LabelForm from "./LabelForm";
 
 function ContactDetail() {
   const { contact_id } = useParams();
@@ -25,7 +25,6 @@ function ContactDetail() {
     dispatch(getContactById(contact_id));
   }, [dispatch, contact_id]);
 
-  const [newLabel, setNewLabel] = useState("");
   const [isAddingLabel, setIsAddingLabel] = useState(false);
   const [isEditContactModal, setIsEditContactModal] = useState(false);
 
@@ -37,12 +36,6 @@ function ContactDetail() {
   const handleRemoveContact = () => {
     dispatch(deleteContactById(contact_id));
     navigate("/");
-  };
-
-  const handleAddLabel = () => {
-    dispatch(addLabelToContact(contact_id, newLabel));
-    setNewLabel("");
-    setIsAddingLabel(false);
   };
 
   const handleRemoveLabel = (label) => {
@@ -90,25 +83,11 @@ function ContactDetail() {
                     </button>
                   </div>
                 ))}
-                {isAddingLabel ? (
-                  <div className="label-item">
-                    <input
-                      type="text"
-                      value={newLabel}
-                      onChange={(e) => setNewLabel(e.target.value)}
-                      placeholder="Tambah Label"
-                    />
-                    <button className="btn" onClick={handleAddLabel}>
-                      Add
-                    </button>
+                <div className="label-item">
+                  <div className="btn" onClick={() => setIsAddingLabel(true)}>
+                    Add Label
                   </div>
-                ) : (
-                  <div className="label-item">
-                    <div className="btn" onClick={() => setIsAddingLabel(true)}>
-                      Add Label
-                    </div>
-                  </div>
-                )}
+                </div>
               </div>
             )}
             <div className="detail-col col-md-4 mt-3">
@@ -131,6 +110,11 @@ function ContactDetail() {
       <ContactForm
         isOpen={isEditContactModal}
         onClose={() => setIsEditContactModal(false)}
+        contactId={contact_id}
+      />
+      <LabelForm
+        isOpen={isAddingLabel}
+        onClose={() => setIsAddingLabel(false)}
         contactId={contact_id}
       />
     </>
