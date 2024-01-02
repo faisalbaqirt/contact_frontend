@@ -50,6 +50,24 @@
   text-align: right;
 }
 
+/* contact-form */
+.modal.open {
+  display: flex;
+}
+
+.btn-action {
+  display: flex;
+  height: 30px;
+  width: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-action:hover {
+  border-radius: 50%;
+  background-color: #e0e0e0;
+}
+
 /* navbar */
 .navbar-nav li a {
   padding: 5px 0;
@@ -165,6 +183,6 @@
   display: none;
 }
 
-.label-item:hover .delete-label{
+.label-item:hover .delete-label {
   display: block;
 }
