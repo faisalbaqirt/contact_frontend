@@ -1,6 +1,6 @@
 import {
   GET_ALLCONTACTS,
-  GET_CONTACT,
+  GET_CONTACT_ID,
   CREATE_CONTACT,
   UPDATE_CONTACT,
   DELETE_CONTACT,
@@ -16,7 +16,7 @@ const initialState = {
 const contactReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALLCONTACTS:
-    case GET_CONTACT:
+    case GET_CONTACT_ID:
       return {
         ...state,
         contactlist: action.payload,
