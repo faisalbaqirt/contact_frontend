@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Action Types
 export const GET_ALLCONTACTS = "GET_ALLCONTACTS";
-export const GET_CONTACT = "GET_CONTACT";
+export const GET_CONTACT_ID = "GET_CONTACT_ID";
 export const GET_CONTACT_LABEL = "GET_CONTACT_LABEL";
 export const CREATE_CONTACT = "CREATE_CONTACT";
 export const UPDATE_CONTACT = "CONTACT";
@@ -16,8 +16,8 @@ export const getAllContacts = (contact) => ({
   payload: contact,
 });
 
-export const getContact = (contact) => ({
-  type: GET_CONTACT,
+export const getContactId = (contact) => ({
+  type: GET_CONTACT_ID,
   payload: contact,
 });
 
@@ -66,7 +66,7 @@ export const getContactById = (id) => async (dispatch) => {
         },
       }
     );
-    dispatch(getContact(response.data.data));
+    dispatch(getContactId(response.data.data));
   } catch (error) {
     throw error;
   }
