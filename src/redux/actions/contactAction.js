@@ -21,6 +21,11 @@ export const getContactId = (contact) => ({
   payload: contact,
 });
 
+export const getContactLabel = (contact) => ({
+  type: GET_CONTACT_LABEL,
+  payload: contact,
+});
+
 export const createContact = () => ({
   type: CREATE_CONTACT,
 });
