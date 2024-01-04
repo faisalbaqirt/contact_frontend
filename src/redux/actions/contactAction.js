@@ -77,6 +77,22 @@ export const getContactById = (id) => async (dispatch) => {
   }
 };
 
+export const getContactByLabel = (label) => async (dispatch) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:5000/api/v1/contact/label/${label}`,
+      {
+        headers: {
+          Authorization: `${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    dispatch(getContactLabel(response.data.data));
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const createNewContact =
   (name, telephone, email, address, labels) => async (dispatch) => {
     try {
