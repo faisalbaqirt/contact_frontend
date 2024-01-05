@@ -34,7 +34,7 @@ function ContactList() {
             <div className="header-item col">Telephone</div>
             <div className="header-item col">Address</div>
           </div>
-          {contacts.map((contact) => (
+          {contacts && contacts.map((contact) => (
             <Link to={`/person/${contact.id}`} className="contact-link">
               <div key={contact.id} className="contact-item row">
                 <div className="item col">{contact.name}</div>
