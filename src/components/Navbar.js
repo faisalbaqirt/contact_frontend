@@ -7,24 +7,10 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg">
+      <nav className="navbar fixed-top navbar-expand">
         <div className="container-fluid">
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div
-            className="collapse navbar-collapse justify-content-end"
-            id="navbarNav"
-          >
-            <ul className="navbar-nav text-center">
+          <div className="navbar-collapse justify-content-end" id="navbarNav">
+            <ul className="navbar-nav">
               {isAuthenticated ? (
                 <>
                   <li className="nav-item">
