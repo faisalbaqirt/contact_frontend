@@ -69,10 +69,33 @@
 }
 
 /* navbar */
+.navbar {
+  background-color: #f0f4f9;
+  height: 56px;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar .nav-item:hover {
+  background-color: #e0e0e0;
+  border-radius: 20px;
+}
+
 .navbar-nav li a {
   padding: 5px 0;
   letter-spacing: 0.5px;
   margin: 0 10px;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  padding: 5px;
+  margin-left: 10px;
 }
 
 /* intro */
