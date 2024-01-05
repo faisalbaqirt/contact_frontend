@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllLabelsByUser } from "../redux/actions/labelAction";
 import { Link, useLocation } from "react-router-dom";
+import { FaTag, FaUserGroup } from "react-icons/fa6";
 
 const Sidebar = ({ isSidebarOpen }) => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const Sidebar = ({ isSidebarOpen }) => {
                 location.pathname === "/" ? "active" : ""
               }`}
             >
-              All
+              <FaUserGroup /> <span className="ms-3">All</span>
             </Link>
           </li>
         </ul>
@@ -37,7 +38,7 @@ const Sidebar = ({ isSidebarOpen }) => {
                   location.pathname === `/label/${label.name}` ? "active" : ""
                 }`}
               >
-                {label.name}
+                <FaTag /> <span className="ms-3">{label.name}</span>
               </Link>
             </li>
           ))}
