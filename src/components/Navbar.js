@@ -1,4 +1,6 @@
-const Navbar = () => {
+import { FaBars } from "react-icons/fa6";
+
+const Navbar = ({ toggleSidebar }) => {
   const isAuthenticated = localStorage.getItem("token");
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -9,6 +11,9 @@ const Navbar = () => {
     <>
       <nav className="navbar fixed-top navbar-expand">
         <div className="container-fluid">
+          <button className="toggle-btn" onClick={toggleSidebar}>
+            <FaBars />
+          </button>
           <div className="navbar-collapse justify-content-end" id="navbarNav">
             <ul className="navbar-nav">
               {isAuthenticated ? (
