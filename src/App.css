@@ -6,6 +6,23 @@
   }
 }
 
+/* medium device */
+@media (min-width: 768px) and (max-width: 991px) {
+  .contact-header .header-item:not(:first-child),
+  .contact-header .header-item:not(:nth-child(3)),
+  .contact-item .item:not(:first-child),
+  .contact-item .item:not(:nth-child(3)) {
+    display: none;
+  }
+
+  .contact-header .header-item:first-child,
+  .contact-header .header-item:nth-child(3),
+  .contact-item .item:first-child,
+  .contact-item .item:nth-child(3) {
+    display: block;
+  }
+}
+
 @media (min-width: 767px) {
   .sidebar-open .content {
     margin-left: 250px;
