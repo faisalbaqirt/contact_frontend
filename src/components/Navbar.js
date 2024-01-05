@@ -11,9 +11,11 @@ const Navbar = ({ toggleSidebar }) => {
     <>
       <nav className="navbar fixed-top navbar-expand">
         <div className="container-fluid">
-          <button className="toggle-btn" onClick={toggleSidebar}>
-            <FaBars />
-          </button>
+          {isAuthenticated && (
+            <button className="toggle-btn" onClick={toggleSidebar}>
+              <FaBars />
+            </button>
+          )}
           <div className="navbar-collapse justify-content-end" id="navbarNav">
             <ul className="navbar-nav">
               {isAuthenticated ? (
