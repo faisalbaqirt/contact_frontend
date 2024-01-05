@@ -26,8 +26,7 @@ const App = () => {
           />
           {isAuthenticated ? (
             <Route path="/" element={<Home />}>
-              <Route index element={<Navigate to="/all" />} />
-              <Route path="/all" element={<ContactList />} />
+              <Route index element={<ContactList />} />
               <Route path="/person/:contact_id" element={<ContactDetail />} />
               <Route path="/label/:label_name" element={<ContactByLabel />} />
             </Route>

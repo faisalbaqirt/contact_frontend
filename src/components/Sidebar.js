@@ -16,7 +16,7 @@ const Sidebar = ({ isSidebarOpen }) => {
       <div className="sidebar-content mt-5">
         <ul className="nav-list">
           <li className="nav-item">
-            <Link to="/all" className="sidebar-link">
+            <Link to="/" className="sidebar-link">
               All
             </Link>
           </li>
