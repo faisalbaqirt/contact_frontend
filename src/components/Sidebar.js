@@ -5,12 +5,14 @@ import { Link, useLocation } from "react-router-dom";
 import { FaTag, FaUserGroup } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 import ContactForm from "./ContactForm";
+import LabelForm from "./LabelForm";
 
 const Sidebar = ({ isSidebarOpen }) => {
   const dispatch = useDispatch();
   const labels = useSelector((state) => state.label.labellist);
   const location = useLocation();
   const [isNewContactModalOpen, setIsNewContactModalOpen] = useState(false);
+  const [isAddNewLabel, setIsAddNewLabel] = useState(false);
 
   useEffect(() => {
     dispatch(getAllLabelsByUser());
@@ -41,7 +43,12 @@ const Sidebar = ({ isSidebarOpen }) => {
               </Link>
             </li>
           </ul>
-          <div className="label-heading">Label</div>
+          <div className="label-heading">
+            <span>Label</span>
+            <div className="btn-action" onClick={() => setIsAddNewLabel(true)}>
+              <FaPlus />
+            </div>
+          </div>
           <ul className="nav-list">
             {labels.map((label) => (
               <li className="nav-item" key={label.id}>
@@ -61,6 +68,10 @@ const Sidebar = ({ isSidebarOpen }) => {
       <ContactForm
         isOpen={isNewContactModalOpen}
         onClose={() => setIsNewContactModalOpen(false)}
+      />
+      <LabelForm
+        isOpen={isAddNewLabel}
+        onClose={() => setIsAddNewLabel(false)}
       />
     </>
   );
