@@ -59,7 +59,7 @@ function ContactDetail() {
 
   return (
     <>
-      <div className="contact-detail">
+      <div className="contact-detail section-container">
         {contacts.map((contact) => (
           <div key={contact.id} className="details">
             <div className="contact-detail-actions">

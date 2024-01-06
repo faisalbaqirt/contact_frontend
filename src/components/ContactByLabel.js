@@ -14,7 +14,7 @@ const ContactByLabel = () => {
 
   return (
     <>
-      <div>
+      <div className="section-container">
         <h2 className="text-center m-3">{label_name}</h2>
         {contacts && contacts.length > 0 ? (
           <div className="contact-list">

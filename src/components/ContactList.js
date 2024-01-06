@@ -13,7 +13,7 @@ function ContactList() {
 
   return (
     <>
-      <div>
+      <div className="section-container">
         <h2 className="text-center m-3">Contact List</h2>
         <div className="contact-list">
           <div className="contact-header row">
