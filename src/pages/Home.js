@@ -1,10 +1,9 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-import Footer from "../components/Footer";
 import { Outlet } from "react-router-dom";
 
-const Main = () => {
+const Home = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
@@ -21,10 +20,9 @@ const Main = () => {
       <Sidebar isSidebarOpen={isSidebarOpen} />
       <div className="content">
         <Outlet />
-        <Footer />
       </div>
     </div>
   );
 };
 
-export default Main;
+export default Home;
