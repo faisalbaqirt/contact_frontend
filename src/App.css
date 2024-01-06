@@ -29,10 +29,21 @@
   }
 }
 
+.home-container {
+  background-color: #f0f4f9;
+  min-height: 100vh;
+}
+
 .content {
   margin-top: 56px;
   transition: margin-left 0.5s ease;
+}
+
+.section-container {
+  background-color: #fff;
+  border-radius: 20px;
   padding: 10px;
+  height: 90vh;
 }
 
 .loader-container {
@@ -230,8 +241,7 @@
 }
 
 /* contactlist */
-.contact-list,
-.contact-detail {
+.contact-list {
   margin: 20px;
   padding: 10px;
 }
