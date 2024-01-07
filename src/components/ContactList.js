@@ -5,7 +5,7 @@ import { getAllContactsByUser } from "../redux/actions/contactAction";
 
 function ContactList() {
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contact.contactlist);
+  const contacts = useSelector((state) => state.contact.allContactData);
 
   useEffect(() => {
     dispatch(getAllContactsByUser());

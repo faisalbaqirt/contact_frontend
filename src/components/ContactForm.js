@@ -25,7 +25,7 @@ const ContactForm = ({ isOpen, onClose, contactId }) => {
   });
 
   const isEditMode = !!contactId;
-  const contacts = useSelector((state) => state.contact.contactlist);
+  const contacts = useSelector((state) => state.contact.allContactData);
   const editedContact = isEditMode
     ? contacts.find((contact) => contact.id === parseInt(contactId))
     : null;

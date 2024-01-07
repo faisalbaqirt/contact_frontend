@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const SearchResults = () => {
-  const contacts = useSelector((state) => state.contact.contactlist);
+  const contacts = useSelector((state) => state.contact.allContactData);
   const [searchQuery, setSearchQuery] = useState("");
   
   const location = useLocation();

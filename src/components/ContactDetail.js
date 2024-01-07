@@ -24,7 +24,7 @@ import LabelForm from "./LabelForm";
 function ContactDetail() {
   const { contact_id } = useParams();
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contact.contactlist);
+  const contacts = useSelector((state) => state.contact.contactDataById);
   const labels = useSelector((state) => state.label.labellist);
   const [isAddingLabel, setIsAddingLabel] = useState(false);
   const [isEditContactModal, setIsEditContactModal] = useState(false);

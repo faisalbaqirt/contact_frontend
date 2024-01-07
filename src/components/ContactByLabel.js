@@ -6,7 +6,7 @@ import { Link, useParams } from "react-router-dom";
 const ContactByLabel = () => {
   const { label_name } = useParams();
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contact.contactlist);
+  const contacts = useSelector((state) => state.contact.contactDataByLabel);
 
   useEffect(() => {
     dispatch(getContactByLabel(label_name));

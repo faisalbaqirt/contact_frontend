@@ -6,7 +6,7 @@ import { FaSearch } from "react-icons/fa";
 
 const Navbar = ({ toggleSidebar }) => {
   const isAuthenticated = localStorage.getItem("token");
-  const contacts = useSelector((state) => state.contact.contactlist);
+  const contacts = useSelector((state) => state.contact.allContactData);
   const [searchQuery, setSearchQuery] = useState("");
   const [showResults, setShowResults] = useState(false);
 
