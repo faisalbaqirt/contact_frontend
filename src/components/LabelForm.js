@@ -46,13 +46,14 @@ const ContactForm = ({ isOpen, onClose, contactId }) => {
             ></button>
           </div>
           <div className="modal-body">
-            <div className="mb-3 row">
+            <div className="m-2 row">
               <div className="col-auto">
                 <FaTags />
               </div>
               <div className="col-auto">
                 <input
                   type="text"
+                  className="form-control"
                   value={newLabel}
                   onChange={(e) => setNewLabel(e.target.value)}
                   placeholder="New Label"
