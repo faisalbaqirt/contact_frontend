@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import ContactDetail from "./components/ContactDetail";
 import ContactList from "./components/ContactList";
 import ContactByLabel from "./components/ContactByLabel";
+import SearchResults from "./components/SearchResults";
 import "./App.css";
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
               <Route index element={<ContactList />} />
               <Route path="/person/:contact_id" element={<ContactDetail />} />
               <Route path="/label/:label_name" element={<ContactByLabel />} />
+              <Route path="/search" element={<SearchResults />} />
             </Route>
           ) : (
             <Route path="/" element={<Landing />} />
