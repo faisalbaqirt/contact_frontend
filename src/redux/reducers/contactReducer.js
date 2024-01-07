@@ -10,18 +10,30 @@ import {
 } from "../actions/contactAction";
 
 const initialState = {
-  contactlist: [],
+  allContactData: [],
+  contactDataById: [],
+  contactDataByLabel: [],
   error: null,
 };
 
 const contactReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALLCONTACTS:
+      return {
+        ...state,
+        allContactData: action.payload,
+        error: null,
+      };
     case GET_CONTACT_ID:
+      return {
+        ...state,
+        contactDataById: action.payload,
+        error: null,
+      };
     case GET_CONTACT_LABEL:
       return {
         ...state,
-        contactlist: action.payload,
+        contactDataByLabel: action.payload,
         error: null,
       };
     case CREATE_CONTACT:
