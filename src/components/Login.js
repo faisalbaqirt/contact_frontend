@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../redux/actions/authAction";
 import ModalDialog from "./ModalDialog";
@@ -17,13 +16,11 @@ const Login = () => {
     message: "",
   });
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     if (modalShow === false && modalContent.title === "Success") {
-      navigate("/");
+      window.location.href = "/";
     }
-  }, [modalShow, modalContent, navigate]);
+  }, [modalShow, modalContent]);
 
   const handleModalClose = () => {
     setModalShow(false);
