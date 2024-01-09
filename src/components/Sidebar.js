@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllLabelsByUser } from "../redux/actions/labelAction";
+import {
+  getAllLabelsByUser,
+  deleteLabelById,
+} from "../redux/actions/labelAction";
+import { removeLabelFromAllContact } from "../redux/actions/contactAction";
 import { Link, useLocation } from "react-router-dom";
 import { FaTag, FaUserGroup } from "react-icons/fa6";
-import { FaPlus } from "react-icons/fa6";
+import { FaPlus, FaTrash } from "react-icons/fa6";
 import ContactForm from "./ContactForm";
 import LabelForm from "./LabelForm";
 
@@ -20,6 +24,11 @@ const Sidebar = ({ isSidebarOpen }) => {
 
   const handleNewContact = () => {
     setIsNewContactModalOpen(true);
+  };
+
+  const handleDeleteLabel = (label) => {
+    dispatch(removeLabelFromAllContact(label.name));
+    dispatch(deleteLabelById(label.id));
   };
 
   return (
@@ -59,6 +68,18 @@ const Sidebar = ({ isSidebarOpen }) => {
                   }`}
                 >
                   <FaTag /> <span className="ms-3">{label.name}</span>
+                  <button
+                    className="btn delete-label"
+                    onClick={() => handleDeleteLabel(label)}
+                    style={{
+                      position: "absolute",
+                      right: "0px",
+                      top: "0px",
+                      zIndex: 1,
+                    }}
+                  >
+                    <FaTrash />
+                  </button>
                 </Link>
               </li>
             ))}
