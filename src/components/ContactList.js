@@ -22,6 +22,7 @@ function ContactList() {
             <div className="header-item col">Telephone</div>
             <div className="header-item col">Address</div>
           </div>
+          <div className="contact-data">
           {contacts && contacts.map((contact) => (
             <Link to={`/person/${contact.id}`} className="contact-link">
               <div key={contact.id} className="contact-item row">
@@ -32,6 +33,7 @@ function ContactList() {
               </div>
             </Link>
           ))}
+          </div>
         </div>
       </div>
     </>
