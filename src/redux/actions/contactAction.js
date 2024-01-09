@@ -165,6 +165,21 @@ export const addLabelToContact = (contactId, label) => async (dispatch) => {
   }
 };
 
+export const removeLabelFromAllContact = (label) => async (dispatch) => {
+  try {
+    await axios.delete("http://localhost:5000/api/v1/contact/label", {
+      headers: {
+        Authorization: `${localStorage.getItem("token")}`,
+      },
+      data: { label },
+    });
+    dispatch(removeLabelAllContact());
+    dispatch(getAllContactsByUser());
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const removeLabelFromContact =
   (contactId, label) => async (dispatch) => {
     try {
