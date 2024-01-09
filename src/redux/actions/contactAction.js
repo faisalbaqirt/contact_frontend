@@ -44,6 +44,10 @@ export const addLabel = () => ({
   type: ADD_LABEL,
 });
 
+export const removeLabelAllContact = () => ({
+  type: REMOVE_LABEL_ALL_CONTACT,
+});
+
 export const removeLabel = () => ({
   type: REMOVE_LABEL,
 });
