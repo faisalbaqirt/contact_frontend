@@ -16,8 +16,8 @@ import {
   FaArrowLeft,
   FaCheck,
   FaPlus,
-  FaTag,
 } from "react-icons/fa6";
+import { PiTagSimpleBold } from "react-icons/pi";
 import ContactForm from "./ContactForm";
 import LabelForm from "./LabelForm";
 
@@ -80,91 +80,87 @@ function ContactDetail() {
               </div>
             </div>
             <div className="detail-name mt-3">{contact.name}</div>
-            {contact.labels && contact.labels.length > 0 && (
-              <div className="labels">
-                {contact.labels.map((label, index) => (
-                  <div key={index} className="label-item">
-                    {label}
-                    <button
-                      className="btn delete-label"
-                      onClick={() => handleRemoveLabel(label)}
-                      style={{
-                        position: "absolute",
-                        right: "0px",
-                        zIndex: 1,
-                      }}
-                    >
-                      <FaTrash />
-                    </button>
-                  </div>
-                ))}
-                <div className="label-item">
-                  <div className="dropdown">
-                    <button
-                      className="btn dropdown-toggle"
-                      type="button"
-                      id="labelDropdown"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      <FaPlus /> Label
-                    </button>
-                    <ul className="dropdown-menu">
-                      {labels.length > 0 ? (
-                        labels.map((label) => (
-                          <li key={label.id}>
-                            <div
-                              className={`dropdown-item ${
-                                label.name === selectedLabel ? "active" : ""
-                              }`}
-                              onClick={() => handleSelectLabel(label.name)}
-                            >
-                              <FaTag />{" "}
-                              <span className="ms-3">{label.name} </span>
-                              {label.name === selectedLabel && (
-                                <span className="float-end">
-                                  <FaCheck />
-                                </span>
-                              )}
-                            </div>
-                          </li>
-                        ))
-                      ) : (
-                        <li>
-                          <div className="dropdown-item disabled">
-                            No Labels
+            <div className="labels">
+              {contact.labels.map((label, index) => (
+                <div key={index} className="label-item">
+                  {label}
+                  <button
+                    className="btn delete-label"
+                    onClick={() => handleRemoveLabel(label)}
+                    style={{
+                      position: "absolute",
+                      right: "0px",
+                      zIndex: 1,
+                    }}
+                  >
+                    <FaTrash />
+                  </button>
+                </div>
+              ))}
+              <div className="label-item">
+                <div className="dropdown">
+                  <button
+                    className="btn dropdown-toggle"
+                    type="button"
+                    id="labelDropdown"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <FaPlus /> Label
+                  </button>
+                  <ul className="dropdown-menu">
+                    {labels.length > 0 ? (
+                      labels.map((label) => (
+                        <li key={label.id}>
+                          <div
+                            className={`dropdown-item ${
+                              label.name === selectedLabel ? "active" : ""
+                            }`}
+                            onClick={() => handleSelectLabel(label.name)}
+                          >
+                            <PiTagSimpleBold />{" "}
+                            <span className="ms-3">{label.name} </span>
+                            {label.name === selectedLabel && (
+                              <span className="float-end">
+                                <FaCheck />
+                              </span>
+                            )}
                           </div>
                         </li>
+                      ))
+                    ) : (
+                      <li>
+                        <div className="dropdown-item disabled">No Labels</div>
+                      </li>
+                    )}
+                    <li>
+                      <hr className="dropdown-divider" />
+                    </li>
+                    <li>
+                      {selectedLabel ? (
+                        <button
+                          className="dropdown-item"
+                          onClick={() => {
+                            handleAddLabelToContact();
+                          }}
+                        >
+                          Add Label
+                        </button>
+                      ) : (
+                        <button
+                          className="dropdown-item"
+                          onClick={() => {
+                            setIsAddingLabel(true);
+                          }}
+                        >
+                          <FaPlus /> <span className="ms-3"> New Label </span>
+                        </button>
                       )}
-                      <li>
-                        <hr className="dropdown-divider" />
-                      </li>
-                      <li>
-                        {selectedLabel ? (
-                          <button
-                            className="dropdown-item"
-                            onClick={() => {
-                              handleAddLabelToContact();
-                            }}
-                          >
-                            Add Label
-                          </button>
-                        ) : (
-                          <button
-                            className="dropdown-item"
-                            onClick={() => {
-                              setIsAddingLabel(true);
-                            }}
-                          >
-                            <FaPlus /> <span className="ms-3"> New Label </span>
-                          </button>
-                        )}
-                      </li>
-                    </ul>
-                  </div>
+                    </li>
+                  </ul>
                 </div>
               </div>
-            )}
+            </div>
             <div className="detail-col col-md-4 mt-3">
               <div className="item">
                 {" "}
