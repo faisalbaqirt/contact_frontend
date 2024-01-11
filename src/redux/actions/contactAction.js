@@ -36,6 +36,10 @@ export const updateContact = () => ({
   type: UPDATE_CONTACT,
 });
 
+export const updateStatus = () => ({
+  type: UPDATE_STATUS,
+});
+
 export const deleteContact = (contactId) => ({
   type: DELETE_CONTACT,
   payload: contactId,
