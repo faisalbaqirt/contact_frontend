@@ -330,8 +330,48 @@
   color: black;
 }
 
+.contact-item {
+  position: relative;
+}
+
 .contact-item:hover {
   background-color: #e0e0e0;
+}
+
+.contact-item:hover .status-action {
+  display: block;
+}
+
+.status-action {
+  display: none;
+  position: absolute;
+  width: 40px;
+  top: 8px;
+  right: 20px;
+}
+
+.favorite-icon,
+.unfavorite-icon {
+  position: relative;
+
+}
+
+.action-text {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: smaller;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.favorite-icon:hover .action-text,
+.unfavorite-icon:hover .action-text {
+  display: block;
 }
 
 /* contact detail */
