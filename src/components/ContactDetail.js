@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getContactById,
   deleteContactById,
+  updateContactStatus,
   addLabelToContact,
   removeLabelFromContact,
 } from "../redux/actions/contactAction";
@@ -16,6 +17,8 @@ import {
   FaArrowLeft,
   FaCheck,
   FaPlus,
+  FaRegStar,
+  FaStar,
 } from "react-icons/fa6";
 import { PiTagSimpleBold } from "react-icons/pi";
 import ContactForm from "./ContactForm";
@@ -37,6 +40,10 @@ function ContactDetail() {
 
   const handleEditContact = () => {
     setIsEditContactModal(true);
+  };
+
+  const handleToggleStatusFavorite = (id, newStatus) => {
+    dispatch(updateContactStatus(id, newStatus));
   };
 
   const navigate = useNavigate();
@@ -71,7 +78,31 @@ function ContactDetail() {
                 </div>
               </div>
               <div className="right-action">
-                <button className="btn btn-primary" onClick={handleEditContact}>
+                {contact.status === "favorite" ? (
+                  <span
+                    className="favorite-icon"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleToggleStatusFavorite(contact.id, "not_favorite");
+                    }}
+                  >
+                    <FaStar style={{ color: "blue" }} />
+                    <span className="action-text">Unfavorite</span>
+                  </span>
+                ) : (
+                  <span
+                    className="unfavorite-icon"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleToggleStatusFavorite(contact.id, "favorite");
+                    }}
+                  >
+                    <FaRegStar />
+                    <span className="action-text">Favorite</span>
+                  </span>
+                )}
+
+                <button className="btn btn-primary ms-3" onClick={handleEditContact}>
                   Edit
                 </button>
                 <div className="btn-action ms-3" onClick={handleRemoveContact}>
