@@ -4,6 +4,7 @@ import {
   GET_CONTACT_LABEL,
   CREATE_CONTACT,
   UPDATE_CONTACT,
+  UPDATE_STATUS,
   DELETE_CONTACT,
   ADD_LABEL,
   REMOVE_LABEL_ALL_CONTACT,
@@ -39,6 +40,7 @@ const contactReducer = (state = initialState, action) => {
       };
     case CREATE_CONTACT:
     case UPDATE_CONTACT:
+    case UPDATE_STATUS:
     case DELETE_CONTACT:
     case ADD_LABEL:
     case REMOVE_LABEL_ALL_CONTACT:
