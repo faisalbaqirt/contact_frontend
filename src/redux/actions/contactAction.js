@@ -139,6 +139,24 @@ export const updateContactById =
     }
   };
 
+export const updateContactStatus = (id, newStatus) => async (dispatch) => {
+  try {
+    await axios.put(
+      `http://localhost:5000/api/v1/contact/person/${id}/status`,
+      { newStatus },
+      {
+        headers: {
+          Authorization: `${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    dispatch(updateStatus());
+    dispatch(getAllContactsByUser());
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const deleteContactById = (id) => async (dispatch) => {
   try {
     await axios.delete(`http://localhost:5000/api/v1/contact/person/${id}`, {
