@@ -37,6 +37,10 @@ export const updateContact = () => ({
   type: UPDATE_CONTACT,
 });
 
+export const updatePhoto = () => ({
+  type: UPDATE_PHOTO,
+});
+
 export const updateStatus = () => ({
   type: UPDATE_STATUS,
 });
