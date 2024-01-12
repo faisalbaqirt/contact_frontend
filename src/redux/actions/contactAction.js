@@ -144,6 +144,25 @@ export const updateContactById =
     }
   };
 
+export const updateContactPhoto = (id, photo) => async (dispatch) => {
+  try {
+    await axios.put(
+      `http://localhost:5000/api/v1/contact/person/${id}/photo`,
+      { photo },
+      {
+        headers: {
+          Authorization: `${localStorage.getItem("token")}`,
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    dispatch(updatePhoto());
+    dispatch(getContactById);
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const updateContactStatus = (id, newStatus) => async (dispatch) => {
   try {
     await axios.put(
