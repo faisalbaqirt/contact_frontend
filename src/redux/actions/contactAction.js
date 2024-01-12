@@ -6,6 +6,7 @@ export const GET_CONTACT_ID = "GET_CONTACT_ID";
 export const GET_CONTACT_LABEL = "GET_CONTACT_LABEL";
 export const CREATE_CONTACT = "CREATE_CONTACT";
 export const UPDATE_CONTACT = "CONTACT";
+export const UPDATE_PHOTO = "UPDATE_PHOTO";
 export const UPDATE_STATUS = "UPDATE_STATUS";
 export const DELETE_CONTACT = "DELETE_CONTACT";
 export const ADD_LABEL = "ADD_LABEL";
