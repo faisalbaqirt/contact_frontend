@@ -19,6 +19,10 @@ function ContactList() {
     dispatch(updateContactStatus(id, newStatus));
   };
 
+  const favoriteContacts = contacts.filter(
+    (contact) => contact.status === "favorite"
+  );
+
   return (
     <>
       <div className="section-container">
@@ -31,6 +35,61 @@ function ContactList() {
             <div className="header-item col">Address</div>
           </div>
           <div className="contact-data">
+            {favoriteContacts.length > 0 && (
+              <div className="title-data">
+                Favorite ({favoriteContacts.length})
+              </div>
+            )}
+            {favoriteContacts.map((contact) => (
+              <Link to={`/person/${contact.id}`} className="contact-link">
+                <div key={contact.id} className="contact-item row">
+                  <div className="item col">
+                    <span className="avatar-photo">
+                      <img
+                        src={
+                          contact.photo ||
+                          "https://res.cloudinary.com/dxgjnu4h8/image/upload/v1698433031/users/profile_ccs4ks.jpg"
+                        }
+                        alt=""
+                      />
+                    </span>
+                    <span className="ms-2">{contact.name}</span>
+                  </div>
+                  <div className="item col">{contact.email}</div>
+                  <div className="item col">{contact.telephone}</div>
+                  <div className="item col">{contact.address}</div>
+                  <div className="status-action">
+                    {contact.status === "favorite" ? (
+                      <span
+                        className="favorite-icon"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleToggleStatusFavorite(
+                            contact.id,
+                            "not_favorite"
+                          );
+                        }}
+                      >
+                        <FaStar style={{ color: "blue" }} />
+                        <span className="action-text">Unfavorite</span>
+                      </span>
+                    ) : (
+                      <span
+                        className="unfavorite-icon"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleToggleStatusFavorite(contact.id, "favorite");
+                        }}
+                      >
+                        <FaRegStar />
+                        <span className="action-text">Favorite</span>
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </Link>
+            ))}
+            <div className="title-data">All Contacts</div>
             {contacts &&
               contacts.map((contact) => (
                 <Link to={`/person/${contact.id}`} className="contact-link">
