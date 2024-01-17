@@ -25,20 +25,31 @@ const ContactByLabel = () => {
               <div className="header-item col">Address</div>
             </div>
             <div className="contact-data">
-            {contacts.map((contact) => (
-              <Link
-                to={`/person/${contact.id}`}
-                className="contact-link"
-                key={contact.id}
-              >
-                <div className="contact-item row">
-                  <div className="item col">{contact.name}</div>
-                  <div className="item col">{contact.email}</div>
-                  <div className="item col">{contact.telephone}</div>
-                  <div className="item col">{contact.address}</div>
-                </div>
-              </Link>
-            ))}
+              {contacts.map((contact) => (
+                <Link
+                  to={`/person/${contact.id}`}
+                  className="contact-link"
+                  key={contact.id}
+                >
+                  <div className="contact-item row">
+                    <div className="item col">
+                      <span className="avatar-photo">
+                        <img
+                          src={
+                            contact.photo ||
+                            "https://res.cloudinary.com/dxgjnu4h8/image/upload/v1698433031/users/profile_ccs4ks.jpg"
+                          }
+                          alt=""
+                        />
+                      </span>
+                      <span className="ms-2">{contact.name}</span>
+                    </div>
+                    <div className="item col">{contact.email}</div>
+                    <div className="item col">{contact.telephone}</div>
+                    <div className="item col">{contact.address}</div>
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         ) : (

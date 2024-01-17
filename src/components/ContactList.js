@@ -35,7 +35,18 @@ function ContactList() {
               contacts.map((contact) => (
                 <Link to={`/person/${contact.id}`} className="contact-link">
                   <div key={contact.id} className="contact-item row">
-                    <div className="item col">{contact.name}</div>
+                    <div className="item col">
+                      <span className="avatar-photo">
+                        <img
+                          src={
+                            contact.photo ||
+                            "https://res.cloudinary.com/dxgjnu4h8/image/upload/v1698433031/users/profile_ccs4ks.jpg"
+                          }
+                          alt=""
+                        />
+                      </span>
+                      <span className="ms-2">{contact.name}</span>
+                    </div>
                     <div className="item col">{contact.email}</div>
                     <div className="item col">{contact.telephone}</div>
                     <div className="item col">{contact.address}</div>
