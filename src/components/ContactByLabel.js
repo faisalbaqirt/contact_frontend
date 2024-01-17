@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getContactByLabel } from "../redux/actions/contactAction";
+import {
+  getContactByLabel,
+  updateContactStatus,
+} from "../redux/actions/contactAction";
 import { Link, useParams } from "react-router-dom";
+import { FaRegStar, FaStar } from "react-icons/fa6";
 
 const ContactByLabel = () => {
   const { label_name } = useParams();
@@ -11,6 +15,10 @@ const ContactByLabel = () => {
   useEffect(() => {
     dispatch(getContactByLabel(label_name));
   }, [dispatch, label_name]);
+
+  const handleToggleStatusFavorite = (id, newStatus) => {
+    dispatch(updateContactStatus(id, newStatus));
+  };
 
   return (
     <>
@@ -47,6 +55,34 @@ const ContactByLabel = () => {
                     <div className="item col">{contact.email}</div>
                     <div className="item col">{contact.telephone}</div>
                     <div className="item col">{contact.address}</div>
+                    <div className="status-action">
+                      {contact.status === "favorite" ? (
+                        <span
+                          className="favorite-icon"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleToggleStatusFavorite(
+                              contact.id,
+                              "not_favorite"
+                            );
+                          }}
+                        >
+                          <FaStar style={{ color: "blue" }} />
+                          <span className="action-text">Unfavorite</span>
+                        </span>
+                      ) : (
+                        <span
+                          className="unfavorite-icon"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleToggleStatusFavorite(contact.id, "favorite");
+                          }}
+                        >
+                          <FaRegStar />
+                          <span className="action-text">Favorite</span>
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </Link>
               ))}
