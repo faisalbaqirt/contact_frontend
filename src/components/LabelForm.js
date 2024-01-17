@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createNewLabel } from "../redux/actions/labelAction";
 import { addLabelToContact } from "../redux/actions/contactAction";
-import { FaTags } from "react-icons/fa6";
+import { PiTagSimpleBold } from "react-icons/pi";
 
 const ContactForm = ({ isOpen, onClose, contactId }) => {
   const dispatch = useDispatch();
@@ -48,7 +48,7 @@ const ContactForm = ({ isOpen, onClose, contactId }) => {
           <div className="modal-body">
             <div className="m-2 row">
               <div className="col-auto">
-                <FaTags />
+                <PiTagSimpleBold />
               </div>
               <div className="col-auto">
                 <input

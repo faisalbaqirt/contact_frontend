@@ -6,8 +6,8 @@ import {
 } from "../redux/actions/labelAction";
 import { removeLabelFromAllContact } from "../redux/actions/contactAction";
 import { Link, useLocation } from "react-router-dom";
-import { FaTag, FaUserGroup } from "react-icons/fa6";
-import { FaPlus, FaTrash } from "react-icons/fa6";
+import { FaPlus, FaTrash, FaUserGroup } from "react-icons/fa6";
+import { PiTagSimpleBold } from "react-icons/pi";
 import ContactForm from "./ContactForm";
 import LabelForm from "./LabelForm";
 
@@ -67,7 +67,7 @@ const Sidebar = ({ isSidebarOpen }) => {
                     location.pathname === `/label/${label.name}` ? "active" : ""
                   }`}
                 >
-                  <FaTag /> <span className="ms-3">{label.name}</span>
+                  <PiTagSimpleBold /> <span className="ms-3">{label.name}</span>
                   <button
                     className="btn delete-label"
                     onClick={() => handleDeleteLabel(label)}
