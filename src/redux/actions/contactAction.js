@@ -1,5 +1,15 @@
 import axios from "axios";
 
+let API_CONTACT_URL;
+
+if (process.env.NODE_ENV === "development") {
+  // url local
+  API_CONTACT_URL = "http://localhost:5000/api/v1/contact";
+} else {
+  // url production
+  API_CONTACT_URL = process.env.REACT_APP_API_CONTACT_URL;
+}
+
 // Action Types
 export const GET_ALLCONTACTS = "GET_ALLCONTACTS";
 export const GET_CONTACT_ID = "GET_CONTACT_ID";
@@ -65,7 +75,7 @@ export const removeLabel = () => ({
 // Thunks
 export const getAllContactsByUser = () => async (dispatch) => {
   try {
-    const response = await axios.get("http://localhost:5000/api/v1/contact", {
+    const response = await axios.get(API_CONTACT_URL, {
       headers: {
         Authorization: `${localStorage.getItem("token")}`,
       },
@@ -78,14 +88,11 @@ export const getAllContactsByUser = () => async (dispatch) => {
 
 export const getContactById = (id) => async (dispatch) => {
   try {
-    const response = await axios.get(
-      `http://localhost:5000/api/v1/contact/person/${id}`,
-      {
-        headers: {
-          Authorization: `${localStorage.getItem("token")}`,
-        },
-      }
-    );
+    const response = await axios.get(`${API_CONTACT_URL}/person/${id}`, {
+      headers: {
+        Authorization: `${localStorage.getItem("token")}`,
+      },
+    });
     dispatch(getContactId(response.data.data));
   } catch (error) {
     throw error;
@@ -94,14 +101,11 @@ export const getContactById = (id) => async (dispatch) => {
 
 export const getContactByLabel = (label) => async (dispatch) => {
   try {
-    const response = await axios.get(
-      `http://localhost:5000/api/v1/contact/label/${label}`,
-      {
-        headers: {
-          Authorization: `${localStorage.getItem("token")}`,
-        },
-      }
-    );
+    const response = await axios.get(`${API_CONTACT_URL}/label/${label}`, {
+      headers: {
+        Authorization: `${localStorage.getItem("token")}`,
+      },
+    });
     dispatch(getContactLabel(response.data.data));
   } catch (error) {
     throw error;
@@ -112,7 +116,7 @@ export const createNewContact =
   (name, telephone, email, address, labels) => async (dispatch) => {
     try {
       await axios.post(
-        "http://localhost:5000/api/v1/contact/new",
+        `${API_CONTACT_URL}/new`,
         { name, telephone, email, address, labels },
         {
           headers: {
@@ -130,7 +134,7 @@ export const updateContactById =
   (id, name, telephone, email, address, labels) => async (dispatch) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/v1/contact/person/${id}`,
+        `${API_CONTACT_URL}/person/${id}`,
         { name, telephone, email, address, labels },
         {
           headers: {
@@ -147,7 +151,7 @@ export const updateContactById =
 export const updateContactPhoto = (id, photo) => async (dispatch) => {
   try {
     await axios.put(
-      `http://localhost:5000/api/v1/contact/person/${id}/photo`,
+      `${API_CONTACT_URL}/person/${id}/photo`,
       { photo },
       {
         headers: {
@@ -166,7 +170,7 @@ export const updateContactPhoto = (id, photo) => async (dispatch) => {
 export const updateContactStatus = (id, newStatus) => async (dispatch) => {
   try {
     await axios.put(
-      `http://localhost:5000/api/v1/contact/person/${id}/status`,
+      `${API_CONTACT_URL}/person/${id}/status`,
       { newStatus },
       {
         headers: {
@@ -183,7 +187,7 @@ export const updateContactStatus = (id, newStatus) => async (dispatch) => {
 
 export const deleteContactById = (id) => async (dispatch) => {
   try {
-    await axios.delete(`http://localhost:5000/api/v1/contact/person/${id}`, {
+    await axios.delete(`${API_CONTACT_URL}/person/${id}`, {
       headers: {
         Authorization: `${localStorage.getItem("token")}`,
       },
@@ -197,7 +201,7 @@ export const deleteContactById = (id) => async (dispatch) => {
 export const addLabelToContact = (contactId, label) => async (dispatch) => {
   try {
     await axios.post(
-      `http://localhost:5000/api/v1/contact/person/${contactId}/label`,
+      `${API_CONTACT_URL}/person/${contactId}/label`,
       { label },
       {
         headers: {
@@ -214,7 +218,7 @@ export const addLabelToContact = (contactId, label) => async (dispatch) => {
 
 export const removeLabelFromAllContact = (label) => async (dispatch) => {
   try {
-    await axios.delete("http://localhost:5000/api/v1/contact/label", {
+    await axios.delete(`${API_CONTACT_URL}/label`, {
       headers: {
         Authorization: `${localStorage.getItem("token")}`,
       },
@@ -230,15 +234,12 @@ export const removeLabelFromAllContact = (label) => async (dispatch) => {
 export const removeLabelFromContact =
   (contactId, label) => async (dispatch) => {
     try {
-      await axios.delete(
-        `http://localhost:5000/api/v1/contact/person/${contactId}/label`,
-        {
-          headers: {
-            Authorization: `${localStorage.getItem("token")}`,
-          },
-          data: { label },
-        }
-      );
+      await axios.delete(`${API_CONTACT_URL}/person/${contactId}/label`, {
+        headers: {
+          Authorization: `${localStorage.getItem("token")}`,
+        },
+        data: { label },
+      });
       dispatch(removeLabel());
       dispatch(getContactById(contactId));
     } catch (error) {

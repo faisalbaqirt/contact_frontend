@@ -1,5 +1,15 @@
 import axios from "axios";
 
+let API_LABEL_URL;
+
+if (process.env.NODE_ENV === "development") {
+  // url local
+  API_LABEL_URL = "http://localhost:5000/api/v1/label";
+} else {
+  // url production
+  API_LABEL_URL = process.env.REACT_APP_API_LABEL_URL;
+}
+
 // Action Types
 export const GET_ALLLABELS = "GET_ALLLABELS";
 export const CREATE_LABEL = "CREATE_LABEL";
@@ -23,7 +33,7 @@ export const deleteLabel = (labelId) => ({
 //Thunk
 export const getAllLabelsByUser = () => async (dispatch) => {
   try {
-    const response = await axios.get("http://localhost:5000/api/v1/label", {
+    const response = await axios.get(API_LABEL_URL, {
       headers: {
         Authorization: `${localStorage.getItem("token")}`,
       },
@@ -37,7 +47,7 @@ export const getAllLabelsByUser = () => async (dispatch) => {
 export const createNewLabel = (name) => async (dispatch) => {
   try {
     await axios.post(
-      "http://localhost:5000/api/v1/label",
+      API_LABEL_URL,
       { name },
       {
         headers: {
@@ -54,7 +64,7 @@ export const createNewLabel = (name) => async (dispatch) => {
 
 export const deleteLabelById = (id) => async (dispatch) => {
   try {
-    await axios.delete(`http://localhost:5000/api/v1/label/${id}`, {
+    await axios.delete(`${API_LABEL_URL}/${id}`, {
       headers: {
         Authorization: `${localStorage.getItem("token")}`,
       },
